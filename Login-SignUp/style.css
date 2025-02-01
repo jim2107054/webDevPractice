@@ -1,0 +1,30 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+:root{
+    --text-dark: #000000;
+    --text-light: #a3a3a3;
+    --white: #ffffff;
+    --max-width: 1200px;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-image: url('bgimg.jpg');
+}
+
+h1{
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 2rem;
+    color: rgb(54, 46, 41);
+}
+
+p{
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: rgb(34, 35, 30);
+}
