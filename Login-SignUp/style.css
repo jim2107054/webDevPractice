@@ -1,6 +1,7 @@
 *{
     margin:0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 :root{
@@ -13,18 +14,67 @@
 body{
     font-family: 'Roboto', sans-serif;
     background-image: url('bgimg.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-h1{
+/* h1{
     text-align: center;
     margin-top: 2.5rem;
     font-size: 2rem;
     color: rgb(54, 46, 41);
 }
-
+*/
+/*
 p{
-    text-align: center;
+    text-align: center; 
     margin-top: 0.5rem;
     font-size: 1rem;
     color: rgb(34, 35, 30);
+} 
+*/
+
+.container{
+    display: grid;
+    position: relative;
+    isolation: isolate;
+}
+
+.container::before{
+    position: absolute;
+    content: '';
+    top: 0;
+    height: 100%;
+    width: 100%;
+    grid-column: 1/2;
+    backdrop-filter: blur(5px);
+    background-color: rgba(62, 242, 45, 0.5);
+    z-index: -1;
+}
+
+.content{
+    min-height: 100vh;
+    width: 100%;
+    max-width: 450px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.content h1{
+    margin-bottom: 1rem;
+    font-size: 2.75rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.content p{
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-align: center;
 }
