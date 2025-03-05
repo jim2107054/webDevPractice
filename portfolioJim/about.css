@@ -23,6 +23,7 @@ body{
 
 .about-container h2{
     font-size: 3.2rem;
+    color: #c8c2c2;
 }
 
 .about-container .about-box span{
@@ -68,4 +69,12 @@ body{
 .about-box .about-btn.active{
     border-color: #60f22f;
     color: #60f22f;
+}
+
+.about-detail{
+    display: none;
+}
+
+.about-detail.active{
+    display: block;
 }
