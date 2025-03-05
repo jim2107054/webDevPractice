@@ -31,7 +31,7 @@ body{
 }
 
 .about-box{
-    background-color: #f4eded;
+    /* background-color: #f4eded; */
     padding: 3rem 10px;
     height: 100vh;
     /* border-radius: 1rem;
@@ -81,9 +81,44 @@ body{
 }
 
 .about-list{
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    background-color: #c8c2c2;
+    border: 1px solid #868383;
+    padding: 1rem;
+    border-radius: 5px;
     grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
     gap: 1rem;
     height: 27.5rem;
     overflow: auto;
+}
+
+.about-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    margin:0 1rem;
+    background-color: greenyellow;
+    padding: 15px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.about-items h3{
+    font-size: 16px;
+    color: #323a47;
+    margin-top: -3.7rem;
+}
+
+.about-items .company{
+    font-size: 15px;
+    font-weight: 700;
+    color: #171414;
+}
+
+.about-items .descExp{
+    font-size: 16px;
+    color: #171414;
+    margin-top: -3.5rem;
+    text-align: justify;
 }
