@@ -14,7 +14,7 @@ body{
 
 .about-container{
     display: grid;
-    /* background-color: #da0909; */
+    background-color: #da0909;
     grid-template-columns: 1fr 2fr;
     gap: 15rem;/*akhene change korcilam, aita abr try kore dekhte hobe.*/
     height: 100vh;
@@ -31,8 +31,9 @@ body{
 }
 
 .about-box{
-    /* background-color: #fff; */
+    background-color: #f4eded;
     padding: 3rem 10px;
+    height: 100vh;
     /* border-radius: 1rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
 }
@@ -77,4 +78,12 @@ body{
 
 .about-detail.active{
     display: block;
+}
+
+.about-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
+    gap: 1rem;
+    height: 27.5rem;
+    overflow: auto;
 }
