@@ -14,7 +14,7 @@ body{
 
 .about-container{
     display: grid;
-    background-color: #da0909;
+    background-color: #38404d;
     grid-template-columns: 1fr 2fr;
     gap: 15rem;/*akhene change korcilam, aita abr try kore dekhte hobe.*/
     height: 100vh;
@@ -85,7 +85,7 @@ body{
     flex-direction: column;
     background-color: #c8c2c2;
     border: 1px solid #868383;
-    padding: 1rem;
+    padding: 0px;
     border-radius: 5px;
     grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
     gap: 1rem;
@@ -122,3 +122,4 @@ body{
     margin-top: -3.5rem;
     text-align: justify;
 }
+
