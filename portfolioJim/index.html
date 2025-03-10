@@ -213,9 +213,8 @@
 
     <!-- Contact section -->
      <section class="contact">
-        <h2 class="heading">Contact <span>Me</span></h2>
         <div class="contact-container">
-            <div class="contact-box">
+            <div class="contact-box" style="background-color: red;">
                 <h2>Let's Work Together.</h2>
                 <p class="desc">I would love to work with you on your next project. Feel free to reach out to discuss how we can collaborate and create something amazing together.</p>
 
@@ -236,16 +235,27 @@
                 </div>
 
                 <div class="contact-detail">
-                    <box-icon name='map' ></box-icon>
+                    <box-icon name='map' type='solid' ></box-icon>
                     <div class="detail">
                         <h3>Location</h3>
                         <span>Khulna, Bangladesh</span>
                     </div>
+                </div>
 
             </div>
 
             <div class="contact-box">
-                <form action=""></form>
+                <form action="">
+                    <h2 class="heading">Contact <span>Me!</span></h2>
+                    <div class="field-box">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="number" placeholder="Phone Number" required>
+                        <input type="text" placeholder="Email Subject" required>
+                        <textarea name="" id="" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
             </div>
         </div>
      </section>
