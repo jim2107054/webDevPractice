@@ -24,12 +24,32 @@ const App = () => {
       });
   }
 
+  async function formSubmit() {
+    const name = document.querySelector("#name").value;
+    const age = document.querySelector("#age").value;
+
+    axios.post("http://localhost:3000/", {
+      name,
+      age
+    })
+    .then((response)=>{
+      console.log(response.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
+
   return (
     <div>
       <h1>Welcome to the React App</h1>
       <h2>Name is: {name}</h2>
       <h3>Age is : {age}</h3>
       <button onClick={() => getResponse()}>send</button>
+
+      <input  id='name' type="text" placeholder="name"/>
+      <input id='age' type="text" placeholder="age"/>
+      <button onClick={()=>formSubmit()}>Submit</button>
     </div>
   );
 };
