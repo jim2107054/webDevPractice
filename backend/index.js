@@ -85,6 +85,14 @@ app.get("/user/:id",(req,res)=>{
     res.json(user);
 });
  
+app.get("/cse",(req,res)=>{
+    let query = req.query;
+    console.log(query);
+    let {name,roll} = req.query;
+    console.log("Name is: ",name);
+    console.log("Roll is: ",roll);
+    res.send(`<h1> Name is <span style="color:green; font-weight: bold;">${name}</span> and Roll is <span style="color: purple; font-weight: bold;">${roll}</span></h1>`);
+})
 
 
 
