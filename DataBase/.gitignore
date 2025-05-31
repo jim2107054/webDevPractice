@@ -1,0 +1,5 @@
+# Ignore environment variables
+.env
+
+# Node modules (if it's a Node.js/Express backend)
+node_modules/
