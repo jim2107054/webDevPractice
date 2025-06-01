@@ -1,3 +1,4 @@
+import generateToken from '../config/token.js';
 import User from './../models/User.model.js';
 import bcrypt from 'bcryptjs';
 
@@ -33,6 +34,16 @@ export const SignUp = async (req, res) => {
             email,
             password: hashedPassword,
         });
+
+        const token = generateToken(createdUser._id);
+        // Set the token in the response header
+        res.cookie("token", token, {
+            httpOnly: true,// Prevents client-side JavaScript from accessing the cookie
+            secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+            sameSite: "strict", // Helps prevent CSRF attacks
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        });
+
         res.status(201).json({ 
             message: "User created successfully",
             user: {
