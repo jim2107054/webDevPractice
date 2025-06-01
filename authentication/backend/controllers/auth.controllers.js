@@ -58,6 +58,7 @@ export const SignUp = async (req, res) => {
   }
 };
 
+//Login function to authenticate users
 export const Login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -96,3 +97,16 @@ export const Login = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+//Logout function to clear the token
+export const Logout = (req,res)=>{
+    try{
+        res.clearCookie("token");
+        res.status(200).json({ message: "Logout successful" });
+    }
+    catch(error){
+        console.error("Error during logout:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
