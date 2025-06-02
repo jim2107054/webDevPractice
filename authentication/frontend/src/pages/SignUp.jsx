@@ -5,6 +5,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const SignUp = () => {
   const { serverUrl } = useContext(dataContext);
@@ -15,6 +16,9 @@ const SignUp = () => {
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+
+  //using useRef to handle image upload
+  const ImageFile = useRef(null);
 
   const showToast = (message) => {
     if (message === "User created successfully") {
@@ -43,6 +47,21 @@ const SignUp = () => {
       console.log(err.message);
     }
   };
+
+  const [frontendImage, setFrontendImage] = useState(profileImage);
+  const [backendImage, setBackendImage] = useState(null);
+
+  function handleImage(e) {
+    // console.log(e);
+    const file = e.target.files[0];
+    if (file) {
+      setBackendImage(file);
+    }
+
+    // Create a URL for the image to display it in the frontend
+    const image = URL.createObjectURL(file);
+    setFrontendImage(image);
+  }
   return (
     <div className="w-full h-[100vh] bg-black flex justify-center items-center">
       <div className="w-[90%] max-w-[400px] h-fit bg-[#152823] rounded">
@@ -54,14 +73,18 @@ const SignUp = () => {
           className="flex flex-col w-full h-fit p-4 gap-4"
         >
           {/*---------For image--------*/}
+          <input type="file" hidden ref={ImageFile} onChange={handleImage} />
           <div className="flex justify-center items-center w-full h-[100px]">
             <div className="w-[100px] h-[100px] rounded-full bg-white overflow-hidden relative border-2 border-white cursor-pointer">
               <img
-                src={profileImage}
+                src={frontendImage}
                 alt="Profile"
                 className="w-full h-full rounded-full object-cover"
               />
-              <div className="w-[100%] h-[100%] top-0 bg-black absolute opacity-0 hover:opacity-50 flex justify-center items-center text-white text-2xl">
+              <div
+                onClick={() => ImageFile.current.click()}
+                className="w-[100%] h-[100%] top-0 bg-black absolute opacity-0 hover:opacity-50 flex justify-center items-center text-white text-2xl"
+              >
                 +
               </div>
             </div>
