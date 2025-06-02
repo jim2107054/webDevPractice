@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { dataContext } from "../context/UserContext";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { serverUrl } = useContext(dataContext);
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -66,6 +68,15 @@ const Login = () => {
             >
               Login
             </button>
+            <p className="text-white text-sm text-center">
+              Create a new account?{" "}
+              <span
+                className="cursor-pointer underline text-[#6868ef]"
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up
+              </span>
+            </p>
             <ToastContainer position="top-right" autoClose={3000} />
           </div>
         </form>
