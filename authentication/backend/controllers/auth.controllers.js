@@ -7,13 +7,13 @@ export const SignUp = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
     // check if all fields are provided
     if (!firstName || !lastName || !email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+      return res.json({ status: 400, message: "All fields are required" });
     }
 
     //if user already exists
     const existUser = await User.findOne({ email });
     if (existUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.json({ status: 400, message: "User already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -65,13 +65,13 @@ export const Login = async (req, res) => {
     //check if the user exists
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      return res.status(400).json({ message: "User does not exist" });
+      return res.json({ status: 400, message: "User does not exist" });
     }
 
     //check if the password is correct
     const match = await bcrypt.compare(password, existingUser.password);
     if (!match) {
-      return res.status(400).json({ message: "Invalid Password" });
+      return res.json({ status: 400, message: "Invalid Password" });
     }
 
     // Generate token
@@ -86,27 +86,25 @@ export const Login = async (req, res) => {
 
     res.status(200).json({
       message: "Login successful",
-      user:{
+      user: {
         firstName: existingUser.firstName,
         lastName: existingUser.lastName,
         email: existingUser.email,
-      }
+      },
     });
   } catch (error) {
     console.error("Error during login:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.json({ status: 500, message: "Internal server error" });
   }
 };
 
 //Logout function to clear the token
-export const Logout = (req,res)=>{
-    try{
-        res.clearCookie("token");
-        res.status(200).json({ message: "Logout successful" });
-    }
-    catch(error){
-        console.error("Error during logout:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-}
-
+export const Logout = (req, res) => {
+  try {
+    res.clearCookie("token");
+    res.json({ status: 200, message: "Logout successful" });
+  } catch (error) {
+    console.error("Error during logout:", error);
+    res.json({ status: 500, message: "Internal server error" });
+  }
+};

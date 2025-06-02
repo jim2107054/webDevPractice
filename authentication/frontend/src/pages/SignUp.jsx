@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import profileImage from "../assets/profile.png";
 import { dataContext } from "../context/UserContext";
 import axios from "axios";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUp = () => {
   const { serverUrl } = useContext(dataContext);
@@ -13,40 +13,43 @@ const SignUp = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const showToast = (message)=>{
-    if(message=== "User created successfully"){
+  const showToast = (message) => {
+    if (message === "User created successfully") {
       toast.success(message);
-    }
-    else{
+    } else {
       toast.error(message);
     }
-  }
+  };
 
-  const handleSignUp = async (e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
-    try{
-        const response = await axios.post(serverUrl+"/api/signup",{
-            firstName,
-            lastName,
-            email,
-            password
-        },{withCredentials: true});
-        console.log(response)
-        showToast(response.data.message);
-    }
-    catch(err){
+    try {
+      const response = await axios.post(
+        serverUrl + "/api/signup",
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      console.log(response);
+      showToast(response.data.message);
+    } catch (err) {
       console.log(err.message);
     }
-  }
+  };
   return (
     <div className="w-full h-[100vh] bg-black flex justify-center items-center">
-      <div className="w-[90%] max-w-[400px] h-[550px] bg-[#152823] rounded">
+      <div className="w-[90%] max-w-[400px] h-fit bg-[#152823] rounded">
         <div className="w-full h-[100px] flex justify-center items-center">
           <h1 className="text-white text-3xl font-bold">Sign Up</h1>
         </div>
-        <form 
-        onSubmit={handleSignUp}
-        className="flex flex-col w-full h-[400px] p-4 gap-4">
+        <form
+          onSubmit={handleLogin}
+          className="flex flex-col w-full h-fit p-4 gap-4"
+        >
           {/*---------For image--------*/}
           <div className="flex justify-center items-center w-full h-[100px]">
             <div className="w-[100px] h-[100px] rounded-full bg-white overflow-hidden relative border-2 border-white cursor-pointer">
@@ -96,7 +99,7 @@ const SignUp = () => {
             >
               Sign Up
             </button>
-            <ToastContainer position="top-right" autoClose={3000}/>
+            <ToastContainer position="top-right" autoClose={3000} />
           </div>
         </form>
       </div>
