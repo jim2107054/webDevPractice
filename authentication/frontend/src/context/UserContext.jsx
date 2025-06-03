@@ -1,7 +1,7 @@
 import React, { createContext } from 'react'
 export const dataContext = createContext();
 const UserContext = ({children}) => {
-  const serverUrl = "http://localhost:8000";
+  const serverUrl = "https://auth-eight-phi-17.vercel.app";
   const value = {
     serverUrl,
     // Add other context values here as needed

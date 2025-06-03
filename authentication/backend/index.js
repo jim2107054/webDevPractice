@@ -20,6 +20,9 @@ app.use(cookieParser()); // Middleware to parse cookies from the request headers
 
 // Define routes
 app.use("/api", authRouter);
+app.get("/", (req, res) => {
+  res.send("Welcome to the Authentication API");
+});
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
