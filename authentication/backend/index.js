@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json()); //it tells the server to parse incoming JSON requests
 app.use(
   cors({
-    origin: process.env.CLIENT_URL, // Allow requests from the client URL specified in the environment variables
+    origin: "https://authentication-seven-rho.vercel.app", // Allow requests from the client URL specified in the environment variables
     credentials: true, // Allow credentials (cookies, authorization headers, etc.) to be sent with requests
   })
 ); // Middleware to enable CORS (Cross-Origin Resource Sharing)
