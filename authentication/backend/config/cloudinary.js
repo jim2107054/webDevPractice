@@ -1,5 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config();
 
 // Configure Cloudinary with environment variables
 cloudinary.config({
@@ -10,6 +12,7 @@ cloudinary.config({
 
 //create a function to upload image to cloudinary
 export const uploadOnCloudinary = async (filePath) => {
+  console.log(filePath);
   try {
     // Check if the file exists
     if (!filePath) {
@@ -23,7 +26,9 @@ export const uploadOnCloudinary = async (filePath) => {
 
     return result.secure_url; // Return the secure URL of the uploaded image
   } catch (error) {
-    fs.unlinkSync(filePath); // Ensure the file is removed even if upload fails
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath); // Ensure the file is removed even if upload fails
+    }
     console.error("Error uploading image to Cloudinary:", error);
     throw new Error("Image upload failed");
   }

@@ -31,16 +31,20 @@ const SignUp = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        serverUrl + "/api/signup",
-        {
-          firstName,
-          lastName,
-          email,
-          password,
+      const formData = new FormData();
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("email", email);
+      formData.append("password", password);
+      if (backendImage) {
+        formData.append("image", backendImage);
+      }
+      const response = await axios.post(serverUrl + "/api/signup", formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
-        { withCredentials: true }
-      );
+      });
       console.log(response);
       showToast(response.data.message);
     } catch (err) {

@@ -1,6 +1,7 @@
 import generateToken from "../config/token.js";
 import User from "./../models/User.model.js";
 import bcrypt from "bcryptjs";
+import { uploadOnCloudinary } from "./../config/cloudinary.js";
 
 export const SignUp = async (req, res) => {
   try {
@@ -9,6 +10,13 @@ export const SignUp = async (req, res) => {
     if (!firstName || !lastName || !email || !password) {
       return res.json({ status: 400, message: "All fields are required" });
     }
+
+    console.log(req.file);
+    let image = null; // Initialize image to null
+    if (req.file) {
+      image = await uploadOnCloudinary(req.file.path);
+    }
+    // const image = req.file ? req.file.path : null; // Handle profile image if provided
 
     //if user already exists
     const existUser = await User.findOne({ email });
@@ -32,6 +40,7 @@ export const SignUp = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
+      image, // Save the image URL if provided
     });
 
     const token = generateToken(createdUser._id);
@@ -50,6 +59,7 @@ export const SignUp = async (req, res) => {
         firstName: createdUser.firstName,
         lastName: createdUser.lastName,
         email: createdUser.email,
+        image: createdUser.image, // Include the image URL in the response
       },
     });
   } catch (error) {
